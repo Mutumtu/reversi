@@ -1,0 +1,5 @@
+[project]
+name = "pyreversi"
+description = "Py Reversi"
+version = "20241026"
+

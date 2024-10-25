@@ -1,5 +1,4 @@
-from piece import Piece
-from player import Player
+from pyreversi.player import Player
 import numpy
 
 class Board:
@@ -90,7 +89,7 @@ class Board:
         for yline in self.table:
             s += yline.count(self.player1.color())
             g += yline.count(self.player2.color())
-        return self.player1 if s > g else self.player2
+        return (self.player1 if s > g else self.player2, s, g)
 
 
     def select_list(self, player) -> list:

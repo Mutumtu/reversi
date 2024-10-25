@@ -9,6 +9,8 @@ class Board:
         self.player2 = Player("player2", Player.GOTE)
         self.table[3][3], self.table[4][4] = self.player1.color(), self.player1.color()
         self.table[3][4], self.table[4][3] = self.player2.color(), self.player2.color()
+        self.players = (self.player1, self.player2)
+        self.who_turn = self.players[0]
         # self.piece = Piece
 
 
@@ -62,7 +64,7 @@ class Board:
                 else:
                     break
 
-        print(ans)
+        # print(ans)
         return ans
 
     def turn(self, player, x, y, putted:list):
@@ -83,6 +85,25 @@ class Board:
                 for during in range(1, abs(i - x)+1):
                     self.table[y - siny * during][x - sinx * during] = player.color()
 
+    def count_piece(self):
+        s, g = 0, 0
+        for yline in self.table:
+            s += yline.count(self.player1.color())
+            g += yline.count(self.player2.color())
+        return self.player1 if s > g else self.player2
+
+
+    def select_list(self, player) -> list:
+        ans_list = []
+        for j in range(8):
+            for i in range(8):
+                if self.canput(player, i, j):
+                    ans_list.append([i, j])
+        return ans_list
+
+    def next_turn(self):
+        self.who_turn = self.players[1] if self.who_turn == self.players[0] else self.players[0]
+        return self.who_turn
 
 
 

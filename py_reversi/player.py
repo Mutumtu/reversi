@@ -11,6 +11,6 @@ class Player:
         return True if self.direction == 0 else False
 
     def color(self):
-        return "⚪️" if self.is_sente() else "⚫️"
+        return "ｏ" if self.is_sente() else "＊"
 
 
